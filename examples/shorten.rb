@@ -7,7 +7,7 @@ Jello.new :verbose => true do |paste, board|
 
   case paste
 
-  when %r%^http://%
+  when %r%^http://.*%
     uri = $&
     uri.gsub! /#/, '%23'
     next if uri =~ %r%^http://bit.ly%

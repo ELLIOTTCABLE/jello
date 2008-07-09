@@ -23,7 +23,7 @@ the long URL with the shortened one:
 
       case paste
 
-      when %r%^http://%
+      when %r%^http://.*%
         uri = $&
         uri.gsub! /#/, '%23'
         next if uri =~ %r%^http://bit.ly%
