@@ -1,7 +1,7 @@
 Jello
 =====
 
-Because everybody likes Paste & Jelly sandwiches, right? I know I did when I
+Because everybody likes "paste & jello" sandwiches, right? I know I did when I
 was a kid.
 
 Jello is a simple library to watch the OS X pasteboard and do something on
