@@ -4,18 +4,9 @@ require 'open-uri'
 require 'jello'
 
 Jello.new :verbose => ARGV.include?('-v') do |paste, board|
+  next unless paste =~ %r{^http://www\.grabup\.com/uploads/[0-9a-z]{32}\.png$}
 
-  case paste
-  when %r{^http://www\.grabup\.com/uploads/[0-9a-z]{32}\.png$}
-    uri = $&
-    uri.gsub! /#/, '%23'
-    next if uri =~ %r{^http://bit.ly}
-
-    shortener = "http://bit.ly/api?url=#{uri}%3Fdirect"
-
-    short = open(shortener).gets.chomp
-    board.puts short
-
-  end
-
+  url = paste.gsub /#/, '%23'
+  shortened_url = open("http://bit.ly/api?url=#{url}%3Fdirect").gets.chomp
+  board.puts shortened_url
 end.start

@@ -3,12 +3,12 @@ require 'jello/pasteboard'
 class Jello < Pasteboard
   def initialize opts = {}, &block
     @opts = {:verbose => false, :period => 0.2}.merge(opts)
-    @on_paste = nil
-    on_paste &block if block_given?
+    @on_paste = block
     @last_pasted = nil
   end
   
   def on_paste &block
+    raise LocalJumpError, "no block given" unless block_given?
     @on_paste = block
   end
   
@@ -20,8 +20,7 @@ class Jello < Pasteboard
         if (paste = self.gets) != @last_pasted
           STDOUT.puts "Processing [#{paste}]" if @opts[:verbose]
           
-          case @on_paste.arity
-          when 1
+          if @on_paste.arity == 1
             @on_paste[paste]
           else
             @on_paste[paste, self]
@@ -39,6 +38,6 @@ class Jello < Pasteboard
   end
   
   def stop
-    raise Interrupt
+    raise Interrupt # …
   end
 end
