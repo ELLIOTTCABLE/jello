@@ -8,5 +8,5 @@ Jello.new :verbose => ARGV.include?('-v') do |paste, board|
 
   url = paste.gsub /#/, '%23'
   shortened_url = open("http://bit.ly/api?url=#{url}%3Fdirect").gets.chomp
-  board.puts shortened_url
+  board.puts shortened_url + "?g"
 end.start
