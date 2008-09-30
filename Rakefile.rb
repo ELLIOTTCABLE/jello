@@ -26,7 +26,7 @@ begin
     desc 'tests packaged files to ensure they are all present'
     task :verify => :package do
       # An error message will be displayed if files are missing
-      if system %(ruby -e "require 'rubygems'; require 'pkg/jello-#{Jello::VERSION}/lib/jello'")
+      if system %(ruby -e "require 'rubygems'; require 'pkg/jello-#{Jello::Version}/lib/jello'")
         puts "\nThe library files are present"
       end
     end
