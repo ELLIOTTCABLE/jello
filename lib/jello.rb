@@ -5,7 +5,7 @@ require 'jello/mould'
 module Jello
   Version = 2
   
-  def self.start options = {}
+  def self.start! options = {}
     options = {:verbose => false, :period => 0.5}.merge(options)
     
     forever do
@@ -30,7 +30,7 @@ module Jello
     end
   end
   
-  def self.stop
+  def self.stop!
     raise Interrupt # …
   end
   

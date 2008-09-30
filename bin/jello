@@ -15,4 +15,4 @@ ARGV.each do |mould|
   require Jello::Mould.find(mould)
 end
 
-Jello.start options
+Jello.start! options
