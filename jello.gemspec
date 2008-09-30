@@ -87,7 +87,7 @@ files:
 - lib/jello/mould.rb
 - lib/jello/pasteboard.rb
 - lib/jello.rb
-- moulds/grabup_fixer.rb
+- moulds/grabup.rb
 - moulds/say.rb
 - moulds/shorten.rb
 - Rakefile.rb

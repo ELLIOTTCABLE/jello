@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'JSON'
+
 Jello::Mould.new do |paste, board|
   
   if paste =~ %r{^http://.*}
