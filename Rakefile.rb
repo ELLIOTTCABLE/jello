@@ -18,10 +18,9 @@ begin
       g.email = ['Jello@elliottcable.com']
       g.summary = 'A library to watch the OS X pasteboard, and process/modify incoming pastes.'
       g.url = 'http://github.com/elliottcable/jello'
-      g.development_dependencies = ['echoe', 'rspec', 'rcov', 'yard', 'stringray']
+      g.development_dependencies = ['echoe >=3.0.1', 'rspec', 'rcov', 'yard', 'stringray']
       g.manifest_name = '.manifest'
       g.ignore_pattern = /^\.git\/|^meta\/|\.gemspec/
-      g.rubygems_version = nil # RubyGems 1.3.0 fix
     end
   
     desc 'tests packaged files to ensure they are all present'

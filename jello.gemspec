@@ -23,7 +23,7 @@ dependencies:
     requirements: 
     - - ">="
       - !ruby/object:Gem::Version 
-        version: "0"
+        version: 3.0.1
     version: 
 - !ruby/object:Gem::Dependency 
   name: rspec
@@ -117,7 +117,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
   requirements: 
   - - ">="
     - !ruby/object:Gem::Version 
-      version: "0"
+      version: "1.2"
   version: 
 requirements: []
 
