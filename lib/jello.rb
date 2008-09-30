@@ -21,6 +21,7 @@ module Jello
           
           if paste.is_a?(String) and paste != initial_paste
             puts " --> [#{paste}]" if options[:verbose]
+            print "\a" if options[:feedback]
             pasteboard.puts paste 
           end
         end

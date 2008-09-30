@@ -9,6 +9,10 @@ OptionParser.new do |opts|
   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
     options[:verbose] = v
   end
+  
+  opts.on("-f", "--[no-]feedback", "Feedback on successful process") do |f|
+    options[:feedback] = f
+  end
 end.parse!
 
 ARGV.each do |mould|
