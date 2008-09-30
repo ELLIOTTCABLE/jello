@@ -68,11 +68,12 @@ dependencies:
 description: A library to watch the OS X pasteboard, and process/modify incoming pastes.
 email: 
 - Jello@elliottcable.com
-executables: []
-
+executables: 
+- jello
 extensions: []
 
 extra_rdoc_files: 
+- bin/jello
 - lib/jello/core_ext/kernel.rb
 - lib/jello/logger.rb
 - lib/jello/mould.rb
@@ -80,14 +81,15 @@ extra_rdoc_files:
 - lib/jello.rb
 - README.markdown
 files: 
-- examples/grabup_fixer.rb
-- examples/say.rb
-- examples/shorten.rb
+- bin/jello
 - lib/jello/core_ext/kernel.rb
 - lib/jello/logger.rb
 - lib/jello/mould.rb
 - lib/jello/pasteboard.rb
 - lib/jello.rb
+- moulds/grabup_fixer.rb
+- moulds/say.rb
+- moulds/shorten.rb
 - Rakefile.rb
 - README.markdown
 - spec/jello_spec.rb

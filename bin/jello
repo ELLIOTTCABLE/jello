@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby -Ku
+($:.unshift File.expand_path(File.join( File.dirname(__FILE__), '..', 'lib' ))).uniq!
+%w[jello rubygems optparse].each {|dep| require dep }
+
+options = Hash.new
+OptionParser.new do |opts|
+  opts.banner = "Usage: jello [options] <mould> (<mould> …)"
+  
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+ARGV.each do |mould|
+  require Jello::Mould.find(mould)
+end
+
+Jello.start options

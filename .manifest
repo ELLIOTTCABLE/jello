@@ -1,11 +1,12 @@
-examples/grabup_fixer.rb
-examples/say.rb
-examples/shorten.rb
+bin/jello
 lib/jello/core_ext/kernel.rb
 lib/jello/logger.rb
 lib/jello/mould.rb
 lib/jello/pasteboard.rb
 lib/jello.rb
+moulds/grabup_fixer.rb
+moulds/say.rb
+moulds/shorten.rb
 Rakefile.rb
 README.markdown
 spec/jello_spec.rb

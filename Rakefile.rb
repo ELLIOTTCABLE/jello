@@ -73,7 +73,7 @@ begin
       # release the fix as it's own gem at some point in the near future.
       require 'stringray/core_ext/spec/rake/verify_rcov'
       RCov::VerifyTask.new(:verify) do |t|
-        t.threshold = 70.0
+        t.threshold = 65.0
         t.index_html = File.join('meta', 'coverage', 'index.html')
         t.require_exact_threshold = false
       end

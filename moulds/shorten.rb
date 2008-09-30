@@ -1,6 +1,3 @@
-($:.unshift File.expand_path(File.join( File.dirname(__FILE__), '..', 'lib' ))).uniq!
-%w[jello open-uri rubygems json].each {|dep| require dep }
-
 Jello::Mould.new do |paste, board|
   
   if paste =~ %r{^http://.*}
@@ -17,5 +14,3 @@ Jello::Mould.new do |paste, board|
   end
   
 end
-
-Jello.start :verbose => true

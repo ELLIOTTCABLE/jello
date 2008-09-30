@@ -11,17 +11,16 @@ module Jello
     forever do
       
       Moulds.each do |pasteboard, moulds|
-        # puts "DEBUG #{pasteboard.board.inspect} :now => [#{pasteboard.gets.inspect}], :last => [#{pasteboard.last.inspect}]"
         if (paste = pasteboard.gets) != pasteboard.last
           initial_paste = paste.dup
           
-          puts "#{pasteboard.board} received: [#{initial_paste}]"
+          puts "#{pasteboard.board} received: [#{initial_paste}]" if options[:verbose]
           moulds.each do |mould|
             paste = mould.on_paste[paste]
           end
           
           if paste and paste != initial_paste
-            puts " --> [#{paste}]"
+            puts " --> [#{paste}]" if options[:verbose]
             pasteboard.puts paste 
           end
         end
