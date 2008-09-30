@@ -132,7 +132,7 @@ end
 
 desc 'Check everything over before commiting'
 task :aok => [:'documentation:generate', :'documentation:open',
-              :'package:manifest',
+              :'package:manifest', :'package:gemspec',
               :'coverage:run', :'coverage:verify', :'coverage:open']
 
 task :ci => [:'documentation:generate', :'coverage:run', :'coverage:verify']
