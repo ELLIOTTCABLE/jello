@@ -19,7 +19,7 @@ module Jello
             paste = mould.on_paste[paste]
           end
           
-          if paste and paste != initial_paste
+          if paste.is_a?(String) and paste != initial_paste
             puts " --> [#{paste}]" if options[:verbose]
             pasteboard.puts paste 
           end
