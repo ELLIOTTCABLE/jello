@@ -1,10 +1,11 @@
 require 'jello/pasteboard'
 
-class Jello < Pasteboard
+class Jello
   def initialize opts = {}, &block
     @opts = {:verbose => false, :period => 0.2}.merge(opts)
     @on_paste = block
     @last_pasted = nil
+    @pasteboard = Pasteboard.new
   end
   
   def on_paste &block
@@ -17,7 +18,7 @@ class Jello < Pasteboard
     begin
       while true
       
-        if (paste = self.gets) != @last_pasted
+        if (paste = @pasteboard.gets) != @last_pasted
           STDOUT.puts "Processing [#{paste}]" if @opts[:verbose]
           
           if @on_paste.arity == 1
@@ -39,5 +40,9 @@ class Jello < Pasteboard
   
   def stop
     raise Interrupt # …
+  end
+  
+  def method_missing meth, *args
+    @pasteboard.send meth, *args
   end
 end
