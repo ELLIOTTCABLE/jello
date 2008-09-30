@@ -1,48 +1,38 @@
+require 'jello/core_ext/kernel'
 require 'jello/pasteboard'
+require 'jello/mould'
 
-class Jello
-  def initialize opts = {}, &block
-    @opts = {:verbose => false, :period => 0.2}.merge(opts)
-    @on_paste = block
-    @last_pasted = nil
-    @pasteboard = Pasteboard.new
-  end
+module Jello
+  Version = 2
   
-  def on_paste &block
-    raise LocalJumpError, "no block given" unless block_given?
-    @on_paste = block
-  end
-  
-  def start
-    STDOUT.puts 'Watching pasteboard' if @opts[:verbose]
-    begin
-      while true
+  def self.start options = {}
+    options = {:verbose => false, :period => 0.5}.merge(options)
+    
+    forever do
       
-        if (paste = @pasteboard.gets) != @last_pasted
-          STDOUT.puts "Processing [#{paste}]" if @opts[:verbose]
+      Moulds.each do |pasteboard, moulds|
+        # puts "DEBUG #{pasteboard.board.inspect} :now => [#{pasteboard.gets.inspect}], :last => [#{pasteboard.last.inspect}]"
+        if (paste = pasteboard.gets) != pasteboard.last
+          initial_paste = paste.dup
           
-          if @on_paste.arity == 1
-            @on_paste[paste]
-          else
-            @on_paste[paste, self]
+          puts "#{pasteboard.board} received: [#{initial_paste}]"
+          moulds.each do |mould|
+            paste = mould.on_paste[paste]
           end
           
-          @last_pasted = paste
+          if paste and paste != initial_paste
+            puts " --> [#{paste}]"
+            pasteboard.puts paste 
+          end
         end
-      
-        sleep @opts[:period]
       end
-    rescue Interrupt
-      STDOUT.puts "\nClosing pasteboard watcher..." if @opts[:verbose]
-      exit
+      
+      sleep options[:period]
     end
   end
   
-  def stop
+  def self.stop
     raise Interrupt # …
   end
   
-  def method_missing meth, *args
-    @pasteboard.send meth, *args
-  end
 end

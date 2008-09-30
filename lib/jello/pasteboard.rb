@@ -1,4 +1,6 @@
-class Jello
+module Jello
+  Pasteboards = []
+  
   class Pasteboard
     
     ## 
@@ -15,7 +17,7 @@ class Jello
     # 
     # @see #gets
     # @see #puts
-    attr_accessor :board
+    attr_reader :board
     
     ##
     # The type of data to request from the board. Available are the following:
@@ -32,16 +34,28 @@ class Jello
     attr_accessor :format
     
     ##
+    # The last paste recognized by the pasteboard. If you modify the contents
+    # of the pasteboard, you can save processing time by also updating this
+    # property with said contents, preventing an extra loop.
+    attr_accessor :last
+    
+    attr_accessor :current
+    
+    ##
     # This creates a new Pasteboard instance, connected to one of the available
-    # Mac OS X pasteboards.
+    # Mac OS X pasteboards. You shouldn't use this directly - use one of the
+    # pre-defined constants instead.
     # 
     # @see #gets
     # @see #puts
     def initialize options = {}
-      @board ||= options[:board]
-      @format ||= options[:format]
+      @board ||= options[:board] || :general
+      @format ||= options[:format] || :ascii
     
       yield self if block_given?
+      
+      @current = ""
+      @last = ""
     end
     
     ##
@@ -51,9 +65,10 @@ class Jello
     # @see @board
     # @see @format
     def gets
+      @last = @current
       command = 'pbpaste'
       command << " -pboard #{@board}" if @board
-      %x[#{command}].chomp
+      @current = %x[#{command}].chomp
     end
     
     ##
@@ -71,5 +86,25 @@ class Jello
       out.close
       something
     end
+    
+    
+    ##
+    # A pasteboard that stores general text
+    General = new :board => :general
+    
+    ##
+    # Unknown
+    Ruler = new :board => :ruler
+    
+    ##
+    # A pasteboard that stores the text used in find dialogues
+    Find = new :board => :find
+    
+    ##
+    # Unknown
+    Font = new :board => :font
+    
+    [General, Ruler, Find, Font].each {|pb| Pasteboards << pb }
+    
   end
 end
