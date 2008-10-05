@@ -16,7 +16,8 @@ module Jello
           
           puts "#{pasteboard.board} received: [#{initial_paste}]" if options[:verbose]
           moulds.each do |mould|
-            paste = mould.on_paste[paste]
+            modified = mould.on_paste[paste]
+            paste = modified if modified.is_a?(String)
           end
           
           if paste.is_a?(String) and paste != initial_paste
