@@ -16,7 +16,8 @@ Jello::Mould.new do |paste, board|
       params[:password] = ENV['TRIM_PASSWORD'] if ENV['TRIM_PASSWORD']
       params[:url] = uri
       
-      shortener = 'http://tr.im/api/trim_url.json?' + params.to_a.map {|a| a.join '=' }.join '&'
+      shortener = 'http://tr.im/api/trim_url.json?' +
+        params.to_a.map {|a| a.join '=' }.join('&')
       
       reply = open(shortener).read
       short = JSON.parse reply
