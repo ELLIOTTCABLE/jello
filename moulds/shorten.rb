@@ -1,3 +1,4 @@
+require 'cgi'
 require 'rubygems'
 require 'JSON'
 
@@ -6,7 +7,7 @@ Jello::Mould.new do |paste, board|
   if paste =~ %r{^http://.*}
     uri = $&
     unless paste =~ %r{^http://tr.im}
-      uri.gsub! /#/, '%23' # Fix anchors
+      uri = CGI::escape uri
       
       # Feel free to copy this Mould to your ~/.jello directory and hardcode
       # in your username and password, if you don't feel like having your
