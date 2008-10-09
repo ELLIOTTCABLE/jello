@@ -8,6 +8,13 @@ Jello::Mould.new do |paste, board|
   if paste =~ %r{^http://.*}
     uri = $&
     unless paste =~ %r{^http://tr.im}
+      # We're going to add the main part of the domain to the end of the URI
+      # as a bullshit parameter, to give visitors some indication of what
+      # their destination is. If you're in a character-limited location, such
+      # as twitter or a text message, feel free to simply delete this section
+      # of the URL by hand after pasting. (⌥⌫ is helpful!)
+      base = uri.match(%r{^http://([\w\d\.]+\.)?([\w\d]+)\.[\w]{2,4}/})[2]
+      
       uri = CGI::escape uri
       
       # Feel free to copy this Mould to your ~/.jello directory and hardcode
@@ -23,7 +30,7 @@ Jello::Mould.new do |paste, board|
       
       reply = open(shortener).read
       short = JSON.parse reply
-      short['url']
+      [short['url'], base].join('?')
     end
   end
   
