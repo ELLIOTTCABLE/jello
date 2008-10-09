@@ -1,6 +1,13 @@
+require 'uri'
+
 Jello::Mould.new do |paste|
-  if paste =~ %r{^http://www\.grabup\.com/uploads/[0-9a-z]{32}\.png$}
-    paste.gsub!(%r{^http://www\.}, 'http://')
-    paste += '?direct'
+  if paste =~ %r{^http://.*}
+    uri = URI.parse paste
+    
+    if uri.host =~ /grabup/
+      uri.host = 'grabup.com'
+      uri.query = 'direct'
+      uri.to_s
+    else; nil; end
   end
 end
