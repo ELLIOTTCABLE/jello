@@ -35,6 +35,10 @@ The follow moulds are included for your enjoyment:
   opts.on("-f", "--[no-]feedback", "Feedback on successful process") do |f|
     options[:feedback] = f
   end
+  
+  opts.on("-p", "--period PERIOD", "Period over which to cycle watcher process") do |p|
+    options[:period] = p
+  end
 end.parse!
 
 ARGV.each do |mould|
