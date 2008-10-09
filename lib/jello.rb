@@ -7,6 +7,9 @@ module Jello
   
   def self.start! options = {}
     options = {:verbose => false, :period => 0.5}.merge(options)
+    raise ArgumentError, 'period must be capable of becoming a Numeric Float' unless
+      options[:period].respond_to? :to_f
+    options[:period] = options[:period].to_f
     
     forever do
       
