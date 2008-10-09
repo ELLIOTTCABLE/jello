@@ -4,7 +4,29 @@
 
 options = Hash.new
 OptionParser.new do |opts|
-  opts.banner = "Usage: jello [options] <mould> (<mould> <mould> …)"
+  opts.banner = "\
+= Jello =
+
+Moulds may be any string that matches a part of a path of a Ruby file relative\
+to one of the entries in the Jello search path:
+ - ~/.jello
+ - /etc/jello
+ - <`gem contents jello`>/moulds
+
+If a file matches earlier in the search path, later ones that also match will\
+be ignored.
+
+A directory may match, in which case all Ruby files in that directory will be\
+utilized.
+
+The follow moulds are included for your enjoyment:
+ - jello say
+ - jello grabup
+ - jello shorten
+
+== Usage ==
+`jello [options] <mould> (<mould> <mould> …)`
+"
   
   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
     options[:verbose] = v
