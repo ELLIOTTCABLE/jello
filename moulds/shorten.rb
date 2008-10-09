@@ -1,5 +1,6 @@
 require 'cgi'
 require 'rubygems'
+require 'open-uri'
 require 'JSON'
 
 Jello::Mould.new do |paste, board|
