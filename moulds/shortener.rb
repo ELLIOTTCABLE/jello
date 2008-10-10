@@ -3,6 +3,11 @@ require 'rubygems'
 require 'open-uri'
 require 'JSON'
 
+Paths = {
+  'google' => :search,
+  /my-site\.name/ => %r{^http://my-site\.name/(.+)\.xhtml$}
+}
+
 Jello::Mould.new do |paste, board|
   
   if paste =~ %r{^http://.*}
@@ -13,8 +18,23 @@ Jello::Mould.new do |paste, board|
       # their destination is. If you're in a character-limited location, such
       # as twitter or a text message, feel free to simply delete this section
       # of the URL by hand after pasting. (⌥⌫ is helpful!)
-      base = uri.host.match( /([\w\d\.]+\.)?([\w\d]+)\.[\w]{2,4}/ )[2]
+      # 
+      # We also check if the URI matches a key of the Paths constant, and
+      # process the URI based on the value matched to that key if it matches.
+      # Keys can be stringish or regexish, in the latter case, it will run it
+      # matches. Values can be stringish or regexish, in the latter case,
+      # the last matching group will be used as the parameter.
+      base = nil
+      matcher = Paths.select {|matcher,baser| uri.to_s =~ (matcher.is_a?(Regexp) ? matcher : /#{matcher}/) } .first
+      if matcher
+        base = uri.to_s.match( matcher[1] )
+      end
       
+      unless base and (base = base[1])
+        base = uri.host.match( /(?:[\w\d\.]+\.)?([\w\d]+)\.[\w]{2,4}/ )[1]
+      end
+      
+      base = URI::unescape(base).gsub(/\s/, '_')
       uri = CGI::escape uri.to_s
       
       shortener = URI.parse 'http://tr.im/api/trim_url.json'
