@@ -23,7 +23,7 @@ the long URL with the shortened one, write a short mould like the following:
     
     Jello::Mould.new do |paste|
     
-      if paste =~ %r{}^http://.*}
+      if paste =~ %r{^http://.*}
         uri = $&
         uri.gsub! /#/, '%23'
         unless uri =~ %r{^http://bit.ly}
