@@ -44,7 +44,14 @@ The follow moulds are included for your enjoyment:
     options[:period] = p
   end
   
-  
+  opts.on_tail("--help", "Show this help") do
+    puts opts
+    exit
+  end
+  opts.on_tail("--version", "Show version") do
+    puts "I'm Jello #{Jello::Version}!"
+    exit
+  end
 end.parse!
 
 ARGV.each do |mould|
