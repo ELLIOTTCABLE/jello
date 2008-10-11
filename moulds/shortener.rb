@@ -49,6 +49,7 @@ Jello::Mould.new do |paste, board|
       
       shortener.query = params.to_a.map {|a| a.join '=' }.join('&')
       
+      puts " --@ [#{shortener}]" if $DEBUG
       reply = open(shortener).read
       short = JSON.parse reply
       [short['url'], base].join('?')

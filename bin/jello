@@ -32,6 +32,10 @@ The follow moulds are included for your enjoyment:
     options[:verbose] = v
   end
   
+  opts.on("-d", "--[no-]debug", "Run extremely verbosely") do |d|
+    $-d = d
+  end
+  
   opts.on("-f", "--[no-]feedback", "Feedback on successful process") do |f|
     options[:feedback] = f
   end
@@ -39,6 +43,8 @@ The follow moulds are included for your enjoyment:
   opts.on("-p", "--period PERIOD", "Period over which to cycle watcher process") do |p|
     options[:period] = p
   end
+  
+  
 end.parse!
 
 ARGV.each do |mould|
