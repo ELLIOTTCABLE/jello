@@ -21,8 +21,8 @@ utilized.
 
 The follow moulds are included for your enjoyment:
  - jello say
- - jello grabup
- - jello shorten
+ - jello grabup_fixer
+ - jello shortener
 
 == Usage ==
 `jello [options] <mould> (<mould> <mould> …)`
