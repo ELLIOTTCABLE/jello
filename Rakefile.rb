@@ -9,7 +9,8 @@ require 'fileutils'
 begin
   require 'echoe'
   
-  task :package => :'package:install'
+  task :package => :'package:package'
+  task :install => :'package:install'
   task :manifest => :'package:manifest'
   namespace :package do
     Echoe.new('jello', Jello::Version) do |g|;g.name = 'Jello'
