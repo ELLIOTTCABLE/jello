@@ -3,7 +3,7 @@ require 'jello/pasteboard'
 require 'jello/mould'
 
 module Jello
-  Version = 3
+  Version = 4
   
   def self.start! options = {}
     options = {:verbose => false, :period => 0.5}.merge(options)
@@ -19,7 +19,12 @@ module Jello
           
           puts "#{pasteboard.board} received: [#{initial_paste}]" if options[:verbose]
           moulds.each do |mould|
-            modified = mould.on_paste[paste]
+            modified = begin
+              mould.on_paste[paste]
+            rescue => error
+              puts " !!> #{error}"
+              nil
+            end
             paste = modified if modified.is_a?(String)
           end
           

@@ -4,6 +4,7 @@ lib/jello/logger.rb
 lib/jello/mould.rb
 lib/jello/pasteboard.rb
 lib/jello.rb
+moulds/fail.rb
 moulds/grabup_fixer.rb
 moulds/say.rb
 moulds/shortener.rb
