@@ -12,14 +12,16 @@ begin
   task :package => :'package:install'
   task :manifest => :'package:manifest'
   namespace :package do
-    Echoe.new('jello', Jello::Version) do |g|
+    Echoe.new('jello', Jello::Version) do |g|;g.name = 'Jello'
       g.project = 'jello'
       g.author = ['elliottcable']
       g.email = ['Jello@elliottcable.com']
       g.summary = 'A library to watch the OS X pasteboard, and process/modify incoming pastes.'
       g.url = 'http://github.com/elliottcable/jello'
-      g.development_dependencies = ['echoe >=3.0.1', 'rspec', 'rcov', 'yard', 'stringray']
+      g.development_dependencies = ['elliottcable-echoe >= 3.0.2', 'rspec', 'rcov', 'yard', 'stringray']
       g.manifest_name = '.manifest'
+      g.retain_gemspec = true
+      g.rakefile_name = 'Rakefile.rb'
       g.ignore_pattern = /^\.git\/|^meta\/|\.gemspec/
     end
   
@@ -30,18 +32,10 @@ begin
         puts "\nThe library files are present"
       end
     end
-
-    task :copy_gemspec => [:package] do
-      pkg = Dir['pkg/*'].select {|dir| File.directory? dir}.last
-      mv File.join(pkg, pkg.gsub(/^pkg\//,'').gsub(/\-\d+$/,'.gemspec')), './'
-    end
-
-    desc 'builds a gemspec as GitHub wants it'
-    task :gemspec => [:package, :copy_gemspec, :clobber_package]
   end
   
 rescue LoadError
-  desc 'You need the `echoe` gem to package Jello'
+  desc 'You need the `elliottcable-echoe` gem to package Jello'
   task :package
 end
 
@@ -132,7 +126,7 @@ end
 
 desc 'Check everything over before commiting'
 task :aok => [:'documentation:generate', :'documentation:open',
-              :'package:manifest', :'package:gemspec',
+              :'package:manifest', :'package:package',
               :'coverage:run', :'coverage:verify', :'coverage:open']
 
 task :ci => [:'documentation:generate', :'coverage:run', :'coverage:verify']
