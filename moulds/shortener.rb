@@ -31,7 +31,7 @@ Jello::Mould.new do |paste, board|
       end
       
       unless base and (base = base[1])
-        base = uri.host.match( /(?:[\w\d\.]+\.)?([\w\d]+)\.[\w]{2,4}/ )[1]
+        base = uri.host.match( /(?:[\w\d\-\.]+\.)?([\w\d\-]+)\.[\w]{2,4}/ )[1]
       end
       
       base = URI::unescape(base).gsub(/\s/, '_')
