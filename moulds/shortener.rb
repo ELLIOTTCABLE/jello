@@ -56,7 +56,8 @@ Jello::Mould.new do |paste, board|
       rescue OpenURI::HTTPError => e
         short = {'url' => paste}
       end
-      [short['url'], base].join('?')
+      shortened = [short['url'], base].join('?')
+      shortened.length < paste.length ? shortened : paste
     end
   end
   
