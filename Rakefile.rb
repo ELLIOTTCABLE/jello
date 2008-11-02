@@ -13,7 +13,7 @@ begin
   task :install => :'package:install'
   task :manifest => :'package:manifest'
   namespace :package do
-    Echoe.new('jello', Jello::Version) do |g|;g.name = 'Jello'
+    Echoe.new('jello', Jello::Version) do |g|
       g.project = 'jello'
       g.author = ['elliottcable']
       g.email = ['Jello@elliottcable.com']
