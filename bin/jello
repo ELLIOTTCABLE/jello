@@ -44,6 +44,10 @@ The follow moulds are included for your enjoyment:
     options[:period] = p
   end
   
+  opts.on("-D", "--[no-]daemonize", "Fork the process") do |D|
+    options[:daemonize] = D
+  end
+  
   opts.on_tail("--help", "Show this help") do
     puts opts
     exit
@@ -57,5 +61,23 @@ end.parse!
 ARGV.each do |mould|
   require Jello::Mould.find(mould)
 end
+
+# http://github.com/chneukirchen/rack/tree/ed86dfd676dcb46e276b6906f017df514e5632f9/bin/rackup#L153-164
+if options[:daemonize]
+  if RUBY_VERSION < "1.9"
+    exit if fork
+    Process.setsid
+    exit if fork
+    Dir.chdir "/"
+    File.umask 0000
+    STDIN.reopen "/dev/null"
+    STDOUT.reopen "/dev/null", "a"
+    STDERR.reopen "/dev/null", "a"
+  else
+    Process.daemon
+  end
+end
+
+$0 = "jello: #{ARGV.join ', '}"
 
 Jello.start! options

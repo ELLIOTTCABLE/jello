@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{Jello}
-  s.version = "4"
+  s.version = "5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["elliottcable"]
-  s.date = %q{2008-10-13}
+  s.date = %q{2008-11-01}
   s.default_executable = %q{jello}
   s.description = %q{A library to watch the OS X pasteboard, and process/modify incoming pastes.}
   s.email = ["Jello@elliottcable.com"]

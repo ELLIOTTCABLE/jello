@@ -3,7 +3,7 @@ require 'jello/pasteboard'
 require 'jello/mould'
 
 module Jello
-  Version = 4
+  Version = 5
   
   def self.start! options = {}
     options = {:verbose => false, :period => 0.5}.merge(options)
