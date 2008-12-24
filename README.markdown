@@ -66,7 +66,7 @@ for more information about this):
     
     require 'jello'
     
-    Jello::Mould.new do Jello::Pasteboard::Find |paste|
+    Jello::Mould.new do |paste|
       paste.gsub! /abc/, 'def'
     end
     
