@@ -1,6 +1,5 @@
 Jello
 =====
-
 Because everybody likes "paste & jello" sandwiches, right? I know I did when I
 was a kid.
 
@@ -61,8 +60,8 @@ them:
     # Now foo.rb, bar.rb, one.rb, and two.rb would be executed on incoming
     # pastes
     
-Finally, you can use pasteboards other than the general one (see `man pbcopy`
-for more information about this):
+You can also use pasteboards other than the general one (see `man pbcopy` for
+more information about this):
     
     require 'jello'
     
@@ -71,3 +70,12 @@ for more information about this):
     end
     
     Jello.start!
+    
+Finally, you can create a Jello [property list][plist] for [launchd][] that
+will keep jello running all the time, even after you restart. Just run
+`rake launchd` from the Jello distribution directory. (This requires that you
+install the [LaunchDoctor][] gem first!)
+
+  [launchd]: <http://en.wikipedia.org/wiki/Launchd> "launchd on Wikipedia"
+  [plist]: <http://en.wikipedia.org/wiki/Property_list> "Property list on Wikipedia"
+  [LaunchDoctor]: <http://github.com/elliottcable/launchdr> "elliottcable's launchdr on GitHub"

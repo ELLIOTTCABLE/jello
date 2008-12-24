@@ -40,6 +40,15 @@ rescue LoadError
   task :package
 end
 
+begin
+  require '/Users/elliottcable/Code/launchdr/lib/launchdr/task'
+  
+  LaunchDr::Task.new :launchd, :bin => 'jello', :arguments => ['shortener', 'grabup']
+rescue LoadError
+  desc 'You need the `elliottcable-launchdr` gem to generate a launchd property list'
+  task :launchd
+end
+
 # =======================
 # = Spec/Coverage tasks =
 # =======================
