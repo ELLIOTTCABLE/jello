@@ -43,7 +43,7 @@ end
 begin
   require 'launchdr/task'
   
-  LaunchDr::Task.new :launchd, :bin => 'jello', :arguments => ['shortener', 'grabup']
+  LaunchDr::Task.new :launchd, :bin => 'jello', :arguments => ['grabup', 'shortener']
 rescue LoadError
   desc 'You need the `elliottcable-launchdr` gem to generate a launchd property list'
   task :launchd
