@@ -19,7 +19,7 @@ begin
       g.email = ['Jello@elliottcable.com']
       g.summary = 'A library to watch the OS X pasteboard, and process/modify incoming pastes.'
       g.url = 'http://github.com/elliottcable/jello'
-      g.development_dependencies = ['elliottcable-echoe >= 3.0.2', 'rspec', 'rcov', 'yard', 'stringray']
+      g.development_dependencies = ['echoe >= 3.0.2', 'rspec', 'rcov', 'yard', 'stringray']
       g.manifest_name = '.manifest'
       g.retain_gemspec = true
       g.rakefile_name = 'Rakefile.rb'
@@ -36,7 +36,7 @@ begin
   end
   
 rescue LoadError
-  desc 'You need the `elliottcable-echoe` gem to package Jello'
+  desc 'You need the `echoe` gem to package Jello'
   task :package
 end
 
