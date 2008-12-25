@@ -41,7 +41,7 @@ rescue LoadError
 end
 
 begin
-  require '/Users/elliottcable/Code/launchdr/lib/launchdr/task'
+  require 'launchdr/task'
   
   LaunchDr::Task.new :launchd, :bin => 'jello', :arguments => ['shortener', 'grabup']
 rescue LoadError
