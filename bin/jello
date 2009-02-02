@@ -44,8 +44,8 @@ The follow moulds are included for your enjoyment:
     options[:period] = p
   end
   
-  opts.on("-D", "--[no-]daemonize", "Fork the process") do |D|
-    options[:daemonize] = D
+  opts.on("-D", "--[no-]daemonize", "Fork the process") do |dd|
+    options[:daemonize] = dd
   end
   
   opts.on_tail("--help", "Show this help") do
