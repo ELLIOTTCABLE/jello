@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = ["Jello@elliottcable.com"]
   s.executables = ["jello"]
   s.extra_rdoc_files = ["bin/jello", "lib/jello/core_ext/kernel.rb", "lib/jello/logger.rb", "lib/jello/mould.rb", "lib/jello/pasteboard.rb", "lib/jello.rb", "README.markdown"]
-  s.files = ["bin/jello", "lib/jello/core_ext/kernel.rb", "lib/jello/logger.rb", "lib/jello/mould.rb", "lib/jello/pasteboard.rb", "lib/jello.rb", "moulds/fail.rb", "moulds/grabup_fixer.rb", "moulds/say.rb", "moulds/shortener.rb", "Rakefile.rb", "README.markdown", "spec/jello_spec.rb", ".manifest", "jello.gemspec"]
+  s.files = ["bin/jello", "lib/jello/core_ext/kernel.rb", "lib/jello/logger.rb", "lib/jello/mould.rb", "lib/jello/pasteboard.rb", "lib/jello.rb", "moulds/fail.rb", "moulds/grabup_fixer.rb", "moulds/say.rb", "moulds/shortener.rb", "moulds/growl.rb", "Rakefile.rb", "README.markdown", "spec/jello_spec.rb", ".manifest", "jello.gemspec"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/elliottcable/jello}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Jello", "--main", "README.markdown"]
