@@ -84,7 +84,7 @@ module Jello
       out = IO::popen command, 'w+'
       out.print something
       out.close
-      something
+      @current = something
     end
     
     
