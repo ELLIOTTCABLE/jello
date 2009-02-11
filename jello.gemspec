@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jello}
-  s.version = "5"
+  s.version = "6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["elliottcable"]
-  s.date = %q{2008-11-01}
+  s.date = %q{2009-02-11}
   s.default_executable = %q{jello}
   s.description = %q{A library to watch the OS X pasteboard, and process/modify incoming pastes.}
   s.email = ["Jello@elliottcable.com"]
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Jello", "--main", "README.markdown"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{jello}
-  s.rubygems_version = %q{1.3.0}
+  s.rubygems_version = %q{1.3.1}
   s.summary = %q{A library to watch the OS X pasteboard, and process/modify incoming pastes.}
 
   if s.respond_to? :specification_version then
@@ -26,20 +26,20 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<elliottcable-echoe>, [">= 0", "= 3.0.2"])
+      s.add_development_dependency(%q<echoe>, [">= 0", "= 3.0.2"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<stringray>, [">= 0"])
     else
-      s.add_dependency(%q<elliottcable-echoe>, [">= 0", "= 3.0.2"])
+      s.add_dependency(%q<echoe>, [">= 0", "= 3.0.2"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<stringray>, [">= 0"])
     end
   else
-    s.add_dependency(%q<elliottcable-echoe>, [">= 0", "= 3.0.2"])
+    s.add_dependency(%q<echoe>, [">= 0", "= 3.0.2"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
