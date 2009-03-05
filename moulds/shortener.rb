@@ -4,8 +4,8 @@ require 'open-uri'
 require 'JSON'
 
 Paths = {
-  'google' => :search,
-  /my-site\.name/ => %r{^http://my-site\.name/(.+)\.xhtml$}
+  'G' => %r ^http://.*\.google(\.[\w]{2,5}){1,2}/search\?.+$ ,
+  'wp' => %r ^http://.*\.wikipedia\.org/wiki/.+$ 
 }
 
 Jello::Mould.new do |paste, board|
@@ -19,15 +19,23 @@ Jello::Mould.new do |paste, board|
       # as twitter or a text message, feel free to simply delete this section
       # of the URL by hand after pasting. (⌥⌫ is helpful!)
       # 
-      # We also check if the URI matches a key of the Paths constant, and
-      # process the URI based on the value matched to that key if it matches.
-      # Keys can be stringish or regexish, in the latter case, it will run it
-      # matches. Values can be stringish or regexish, in the latter case,
-      # the last matching group will be used as the parameter.
-      base = nil
-      matcher = Paths.select {|matcher,baser| uri.to_s =~ (matcher.is_a?(Regexp) ? matcher : /#{matcher}/) } .first
+      # We also check if the URI matches a value of the Paths constant, and
+      # process the URI based on the key of the first value that matches.
+      # Values can be stringish or regexish, and will be assumed to match if
+      # they apply against the URI. Keys can be stringish or regexish, and are
+      # applied against the URI to get the actual base string. A stringish
+      # will be used directly as the base; the contents of a regex's first
+      # group will be used if possible; a value of nil will prevent any basing
+      # from happening.
+      matcher = Paths.select {|baser,matcher| uri.to_s =~ (matcher.is_a?(Regexp) ? matcher : /#{matcher.to_s}/) } .first
       if matcher
-        base = uri.to_s.match( matcher[1] )
+        case baser = matcher[0]
+          when Regexp             then base = uri.to_s.match(baser)[1]
+          when NilClass           then base = nil
+          else                         base = baser.to_s
+        end
+      else
+        base = uri.host.match( /(?:[\w\d\-\.]+\.)?([\w\d\-]+)\.[\w]{2,4}/ )[1]
       end
       
       unless base and (base = base[1])
@@ -56,7 +64,7 @@ Jello::Mould.new do |paste, board|
       rescue OpenURI::HTTPError => e
         short = {'url' => paste}
       end
-      shortened = [short['url'], base].join('?')
+      shortened = [short['url'], base].compact.join('?')
       shortened.length < paste.length ? shortened : paste
     end
   end
