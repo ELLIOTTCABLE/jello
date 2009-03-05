@@ -59,7 +59,9 @@ The follow moulds are included for your enjoyment:
 end.parse!
 
 ARGV.each do |mould|
-  require Jello::Mould.find(mould)
+  mould_file = Jello::Mould.find(mould)
+  require mould_file if mould_file
+  puts "!! Unable to locate any moulds matching '#{mould}'!" unless mould_file
 end
 
 # http://github.com/chneukirchen/rack/tree/ed86dfd676dcb46e276b6906f017df514e5632f9/bin/rackup#L153-164
