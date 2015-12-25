@@ -79,3 +79,11 @@ install the [LaunchDoctor][] gem first!)
   [launchd]: <http://en.wikipedia.org/wiki/Launchd> "launchd on Wikipedia"
   [plist]: <http://en.wikipedia.org/wiki/Property_list> "Property list on Wikipedia"
   [LaunchDoctor]: <http://github.com/elliottcable/launchdr> "elliottcable's launchdr on GitHub"
+
+License
+-------
+This project is released for public usage under the terms of the very-permissive [ISC license][] (a
+modern evolution of the MIT / BSD licenses); more information is available in [COPYING][].
+
+   [ISC license]: <http://choosealicense.com/licenses/isc/> "Information about the ISC license"
+   [COPYING]: <./COPYING.text>
