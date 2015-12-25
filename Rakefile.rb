@@ -8,7 +8,7 @@ require 'fileutils'
 # =======================
 begin
   require 'echoe'
-  
+
   task :package => :'package:package'
   task :install => :'package:install'
   task :manifest => :'package:manifest'
@@ -25,7 +25,7 @@ begin
       g.rakefile_name = 'Rakefile.rb'
       g.ignore_pattern = /^\.git\/|^meta\/|\.gemspec/
     end
-  
+
     desc 'tests packaged files to ensure they are all present'
     task :verify => :package do
       # An error message will be displayed if files are missing
@@ -34,7 +34,7 @@ begin
       end
     end
   end
-  
+
 rescue LoadError
   desc 'You need the `echoe` gem to package Jello'
   task :package
@@ -42,7 +42,7 @@ end
 
 begin
   require 'launchdr/task'
-  
+
   LaunchDr::Task.new :launchd, :bin => 'jello', :arguments => ['grabup', 'shortener']
 rescue LoadError
   desc 'You need the `elliottcable-launchdr` gem to generate a launchd property list'
@@ -56,7 +56,7 @@ begin
   require 'spec'
   require 'rcov'
   require 'spec/rake/spectask'
-  
+
   task :default => :'coverage:run'
   task :coverage => :'coverage:run'
   namespace :coverage do
@@ -69,7 +69,7 @@ begin
       t.rcov_opts = [ '--include-file', '"^lib"', '--exclude-only', '".*"']
       t.rcov_dir = File.join('meta', 'coverage')
     end
-    
+
     begin
       require 'spec/rake/verify_rcov'
       # For the moment, this is the only way I know of to fix RCov. I may
@@ -84,12 +84,12 @@ begin
       desc 'You need the `stringray` gem to verify coverage'
       task :verify
     end
-    
+
     task :open do
       system 'open ' + File.join('meta', 'coverage', 'index.html') if PLATFORM['darwin']
     end
   end
-  
+
 rescue LoadError
   desc 'You need the `rcov` and `rspec` gems to run specs/coverage'
   task :coverage
@@ -101,7 +101,7 @@ end
 begin
   require 'yard'
   require 'yard/rake/yardoc_task'
-  
+
   task :documentation => :'documentation:generate'
   namespace :documentation do
     YARD::Rake::YardocTask.new :generate do |t|
@@ -109,18 +109,18 @@ begin
       t.options = ['--output-dir', File.join('meta', 'documentation'),
                    '--readme', 'README.markdown']
     end
-    
+
     YARD::Rake::YardocTask.new :dotyardoc do |t|
       t.files   = ['lib/**/*.rb']
       t.options = ['--no-output',
                    '--readme', 'README.markdown']
     end
-    
+
     task :open do
       system 'open ' + File.join('meta', 'documentation', 'index.html') if PLATFORM['darwin']
     end
   end
-  
+
 rescue LoadError
   desc 'You need the `yard` gem to generate documentation'
   task :documentation
